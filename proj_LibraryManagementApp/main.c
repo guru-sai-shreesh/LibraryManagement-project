@@ -1,9 +1,11 @@
 //
-//  PPS_proj_sem1.c
+//  main.c
 //  library management app
 //
 //  Created by Guru sai shreesh Tirumalla.
 //
+
+// proj completed but doubts about getchar()
 
 #include <stdio.h>
 #include <string.h>
@@ -359,9 +361,18 @@ void print_book_details(int x){
 }
 
 void search_Bname(void){
-    char bn[50];
+    char bn[50], c;
     printf("Enter book name: ");
-    scanf("%s", bn);
+    int i=0;
+    c=getchar();
+    /*
+     dk why but first element is taken as '\n' in these functions, found by debugging.
+     So to make code run first element is not collected
+    */
+    while ((c=getchar())!='\n') {
+        bn[i++]=c;
+    }
+    bn[i]='\0';
     int count=0;
     for (int i=0; i<last; i++) {
         if (strbkcmp(books[i].book_name, bn)==1) {
@@ -397,13 +408,13 @@ void search_Bname(void){
             scanf("%d", &target_book_index);
             target_book_index--;
             books[arr[target_book_index]].quantity--;
-            printf("Information sucesfully updated......\n");
+            printf("Information sucesfully updated......\n\n");
             printf("Please collect the book according to the below details: \n");
             print_book_details(arr[target_book_index]);
-            printf("\nRedirected back to seaching methods...\n\n");
+            printf("\n\nRedirected back to seaching methods...\n\n");
         }
         else{
-            printf("Redirected back to seaching methods...\n");
+            printf("\nRedirected back to seaching methods...\n");
         }
     }
 }
@@ -426,13 +437,13 @@ void search_Bid(void){
     scanf("%d", &opt);
     if (opt==1) {
         books[i].quantity--;
-        printf("\nInformation sucesfully updated......\n");
+        printf("\nInformation sucesfully updated......\n\n");
         printf("Please collect the book according to the below details: \n");
         print_book_details(i);
-        printf("\nRedirected back to seaching methods...\n\n");
+        printf("\n\nRedirected back to seaching methods...\n\n");
     }
     else{
-        printf("Redirected back to seaching methods...\n\n");
+        printf("\nRedirected back to seaching methods...\n\n");
     }
 }
 void search_Bcat(void){
@@ -449,12 +460,12 @@ void search_Bcat(void){
         }
     }
     if (count==0) {
-        printf("No book found under this categeory!!\n");
+        printf("\nNo book found under this categeory!!\n");
         printf("Redirected back to seaching methods...\n\n");
         
     }
     else{
-        printf("There are %d books under this categeory...\n", count+1);
+        printf("\nThere are %d books under this categeory...\n\n", count+1);
         int arr[count];
         count=0;
         for (int i=0; i<N; i++){
@@ -477,21 +488,30 @@ void search_Bcat(void){
             scanf("%d", &target_book_index);
             target_book_index--;
             books[arr[target_book_index]].quantity--;
-            printf("Information sucesfully updated......\n");
+            printf("Information sucesfully updated......\n\n");
             printf("Please collect the book according to the below details: \n");
             print_book_details(arr[target_book_index]);
-            printf("\nRedirected back to seaching methods...\n\n");
+            printf("\n\nRedirected back to seaching methods...\n\n");
         }
         else{
-            printf("Redirected back to seaching methods...\n");
+            printf("\nRedirected back to seaching methods...\n");
         }
     }
 }
 
 void search_Aname(void){
-    char an[30];
+    char an[30], c;
     printf("Enter Author name: ");
-    scanf("%s", an);
+    int i=0;
+    c=getchar();
+    /*
+     dk why but first element is taken as '\n' in these functions, found by debugging.
+     So to make code run first element is not collected
+    */
+    while ((c=getchar())!='\n') {
+        an[i++]=c;
+    }
+    an[i]='\0';
     int count=0;
     for (int i=0; i<last; i++) {
         if (strbkcmp(books[i].author_name, an)==1) {
@@ -527,13 +547,13 @@ void search_Aname(void){
             scanf("%d", &target_book_index);
             target_book_index--;
             books[arr[target_book_index]].quantity--;
-            printf("Information sucesfully updated......\n");
+            printf("Information sucesfully updated......\n\n");
             printf("Please collect the book according to the below details: \n");
             print_book_details(arr[target_book_index]);
-            printf("\nRedirected back to seaching methods...\n\n");
+            printf("\n\nRedirected back to seaching methods...\n\n");
         }
         else{
-            printf("Redirected back to seaching methods...\n\n");
+            printf("\nRedirected back to seaching methods...\n\n");
         }
     }
 }
@@ -546,7 +566,17 @@ void add_book(void){
         printf("Enter title of book: ");
         scanf("%s", books[last].book_name);
         printf("Enter authoer name: ");
-        scanf("%s", books[last].author_name);
+        char c;
+        int i=0;
+        c=getchar();
+        /*
+         dk why but first element is taken as '\n' in these functions, found by debugging.
+         So to make code run first element is not collected
+        */
+        while ((c=getchar())!='\n') {
+            books[last].author_name[i++]=c;
+        }
+        books[last].author_name[i]='\0';
         printf("Enter rack no: ");
         scanf("%d", &books[last].rack_no);
         printf("\n");
