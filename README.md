@@ -1,6 +1,6 @@
 # proj_LibraryManagementApp
 
-This is project on library management system which has 2 logins one for student and other for librarian. 
-Librarian have an access to add, remove, special view of books. 
-Student have 4 types of search techniques to access the books in library (using book name, author name, book id, category of books) 
-And displays location of book and changes data or quantity of books according to the students interest.
+This is project on library management system which have seperate logins for students and librarian. 
+Librarian can access and perform extra functions like add, remove and special view of books. 
+Student have different search methods to access the books (using book name or author name or book_id or category). 
+It isplays location of book and changes data or quantity of books according to the students requirement.
